@@ -2,6 +2,19 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+
+'''
+https://docs.streamlit.io/library/api-reference/data/st.dataframe
+https://docs.streamlit.io/library/cheatsheet
+https://docs.streamlit.io/library/api-reference
+https://www.youtube.com/watch?v=LZH_7PCpN2o
+https://github.com/PablocFonseca/streamlit-aggrid
+https://github.com/streamlit/streamlit/issues/455
+https://www.youtube.com/watch?v=CYi0pPWQ1Do
+
+
+'''
+
 def random():
     # Randomly fill a dataframe and cache it
     @st.cache(allow_output_mutation=True)
