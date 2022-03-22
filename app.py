@@ -1,7 +1,7 @@
 # streamlit_app.py
 
 #from pyrsistent import v
-from tkinter import font
+#from tkinter import font
 import streamlit as st
 import pandas as pd 
 #import numpy as np
