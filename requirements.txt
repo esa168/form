@@ -1,1 +1,4 @@
 streamlit
+st_aggrid
+requests
+pandas
