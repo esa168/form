@@ -1,4 +1,3 @@
-streamlit
-st_aggrid
-requests
+streamlit==1.6.0 
 pandas
+streamlit-aggrid==0.2.3.post2
