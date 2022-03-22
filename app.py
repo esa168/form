@@ -1,6 +1,7 @@
 # streamlit_app.py
 
 #from pyrsistent import v
+from tkinter import font
 import streamlit as st
 import pandas as pd 
 #import numpy as np
@@ -160,6 +161,7 @@ def clear_form ():
     st.session_state['e'] = ""
     st.session_state['f'] = ""
     st.session_state['dict']={}
+    st.session_state.pop('counter', None)
   
   
 def clear_table (): 
@@ -177,9 +179,9 @@ def create_table(dict):
                         {"headerName": "Material Conc","field": "rm_conc","editable": False,},
                         ]
                     }
-    
+    #new_df = grid_return["data"]    
     grid_return = AgGrid(df, grid_options)
-    #new_df = grid_return["data"]
+
   
 
      
@@ -191,23 +193,33 @@ def run_app_v2(dict):
     #! SIDE BAR 
     st.sidebar.markdown("# General Information")
     #st.sidebar.title("General Information")
+    
+    cmf_no =st.sidebar.text_input ("CMF No",key='j')
 
-    date = st.sidebar.date_input ("Date", key= 'a')
+    #date = st.sidebar.date_input ("Date", key= 'a')
     cust= st.sidebar.text_input ("Customer Name", key='b')
+    
+    #!
+  
     prod_kind = st.sidebar.selectbox("Product Kind", ("DC", "MB",'Others'),key='g')
+
+    a_o = st.sidebar.text_input ("A/O",key='i')
+        
+    color = st.sidebar.color_picker ("Color", key='f')
+
     prod_code = st.sidebar.text_input ('Product Code', key='c')
-    dosage = st.sidebar.number_input ("dosage", key='d')
+    dosage = st.sidebar.number_input ("Dosage", key='d')
     resin = st.sidebar.text_input ("Resin",key='e')
     end_product = st.sidebar.text_area ("End Product",key='h')
-    color = st.sidebar.color_picker ("Color", key='f')
-    a_o = st.sidebar.text_input ("A/O",key='i')
-    cmf_no =st.sidebar.text_input ("CMF No",key='j')
-    remarks = st.sidebar.text_area ("Remarks",key='k')
 
+ 
+    #remarks = st.sidebar.text_area ("Remarks",key='k')
+
+    
         
     #! MAIN 
     with st.container():
-        
+
         if 'dict' not in st.session_state:
             st.session_state['dict'] = dict
         else:
@@ -222,11 +234,21 @@ def run_app_v2(dict):
             if submit_button:
                 dict ["rm_code"] .append(rm_code)
                 dict ["rm_conc"] .append(rm_conc)
-
+   
                
     with st.container ():
         st.markdown ('### Table')
         create_table (dict)
+        
+        col_00, col_01,col_02 = st.columns (3)
+        with col_00:
+            st.write ("Total Sum")
+        with col_01:
+            str_disp = (sum(dict['rm_conc']))
+            st.write (str_disp)
+        with col_02:
+            pass
+    
             
     with st.container():
         col1,col2,col3 = st.columns (3)
@@ -241,7 +263,104 @@ def run_app_v2(dict):
 
       
 
-                
+    
+def run_app_v3(dict):
+
+    st.markdown("### Formula Entry Form")
+    
+        #! SIDE BAR 
+    with st.expander("General Information"):  
+
+        x1,x2,x3= st.columns (3)
+        with x1:  
+            cmf_no =st.text_input ("CMF No",key='j')  
+        with x2:
+            prod_code = st.text_input ('Product Code', key='c')
+        with x3:
+             a_o = st.text_input ("Account Officer (initials)",key='i')
+         
+         
+
+        y1,y2,y3,y4 = st.columns (4)
+        with y1:
+            dosage = st.number_input ("Dosage", value = 0.4, key='d')
+        with y2:
+            resin_list = [ "HDPE", "PP-Homo", "PP-BLock", "PP-Random","LDPE", "LLDPE","PVC", "HIPS", "GPPS", 'others'  ]   
+            #resin = st.text_input ("Resin",key='e')
+            resin = st.selectbox ('Resin',resin_list,key ='resin')
+        with y3:
+            prod_kind = st.selectbox("Product Kind", ("DC", "MB",'Others'),key='g')
+        with y4:
+            color = st.color_picker ("Color", key='f')
+
+        
+        #!
+
+        #date = st.sidebar.date_input ("Date", key= 'a')
+        cust= st.text_input ("Customer Name", key='b')
+
+        end_product = st.text_area ("End Product" ,key='h')
+
+        remarks = st.text_area ("Remarks",key='k')
+
+    
+        
+    #! MAIN 
+    with st.container():
+
+        if 'dict' not in st.session_state:
+            st.session_state['dict'] = dict
+        else:
+            dict = st.session_state['dict']
+    
+        with st.form (key = 'formula', clear_on_submit = True):
+            st.markdown ('###### Enter Formula')
+            #st.subheader('Enter Formula')
+            
+            a1,a2 = st.columns (2)
+            with a1:
+                rm_code= st.text_input ("Code")
+            with a2:
+                rm_conc = st.number_input (label="Concentration",value =0.001, min_value=0.000001, max_value=100.00, step=0.000001, format="%.7f")
+            
+            submit_button = st.form_submit_button ("Submit")           
+            if submit_button:
+                dict ["rm_code"] .append(rm_code)
+                dict ["rm_conc"] .append(rm_conc)
+   
+               
+    with st.container ():
+        
+
+        st.markdown ('### Table')
+
+            
+        create_table (dict)
+        
+        col_00, col_01,col_02 = st.columns (3)
+        with col_00:
+            st.write ("Total Sum : ")
+        with col_01:
+            if len(dict['rm_conc'])>0:
+                str_disp = (sum(dict['rm_conc']))
+                st.write (str_disp)
+
+        with col_02:
+            pass
+    
+            
+    with st.container():
+        col1,col2,col3 = st.columns (3)
+        with col1:
+            st.button ("Reset All", on_click=clear_form)
+        with col2:
+            var_list = ["b","c","d","e","f"]
+            save_data =  st.button (label="Save all ", on_click=clear_form)
+        with col3:
+            st.button ("Clear Table", on_click = clear_table) 
+  
+
+                      
 
         
 
@@ -253,15 +372,17 @@ def run_app_v2(dict):
 
 def main ():
     
+    #clear_form()
+    
     dict = {
     'rm_code':[],
     'rm_conc':[] 
 }
 
     
-    if check_password():
-    
-        df = run_app_v2 (dict) 
+    #if check_password():
+
+    df = run_app_v3 (dict) 
  
  
     
