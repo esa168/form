@@ -1,110 +1,46 @@
 {
     "1": {
-        "cmf_no": "kljljk",
-        "prod_code": "",
-        "sm": "",
+        "cmf_no": "123",
+        "prod_code": "123",
+        "sm": "123",
         "dosage": 0.4,
         "resin": "HDPE",
         "prod_kind": "DC",
         "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
+        "cust": "123",
+        "end_product": "123",
+        "remarks": "123",
+        "formula": {
+            "rm_code": [
+                "123",
+                "123"
+            ],
+            "rm_conc": [
+                0.001,
+                0.001
+            ]
+        }
     },
-    "10": {
-        "cmf_no": "qrewrew",
-        "prod_code": "",
-        "sm": "",
+    "2": {
+        "cmf_no": "222",
+        "prod_code": "222",
+        "sm": "222",
         "dosage": 0.4,
         "resin": "HDPE",
         "prod_kind": "DC",
         "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "16": {
-        "cmf_no": "",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 0.4,
-        "resin": "HDPE",
-        "prod_kind": "MB",
-        "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "34": {
-        "cmf_no": "uyuioiuooiu",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 4.0,
-        "resin": "HIPS",
-        "prod_kind": "MB",
-        "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "45": {
-        "cmf_no": "123edr",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 4.0,
-        "resin": "HIPS",
-        "prod_kind": "MB",
-        "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "57": {
-        "cmf_no": "cmf and no enter",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 3.9700000000000006,
-        "resin": "PP-Homo",
-        "prod_kind": "MB",
-        "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "67": {
-        "cmf_no": "no enter",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 3.9700000000000006,
-        "resin": "PP-Homo",
-        "prod_kind": "MB",
-        "color": "#000000",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "86": {
-        "cmf_no": "entn",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 3.9700000000000006,
-        "resin": "PP-Homo",
-        "prod_kind": "MB",
-        "color": "#3d0808",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
-    },
-    "94": {
-        "cmf_no": ",m.,.m",
-        "prod_code": "",
-        "sm": "",
-        "dosage": 3.9700000000000006,
-        "resin": "PP-Homo",
-        "prod_kind": "MB",
-        "color": "#3d0808",
-        "cust": "",
-        "end_product": "",
-        "remarks": ""
+        "cust": "222",
+        "end_product": "222",
+        "remarks": "222",
+        "formula": {
+            "rm_code": [
+                "222",
+                "222"
+            ],
+            "rm_conc": [
+                0.001,
+                0.001
+            ]
+        }
     }
 }

@@ -3,6 +3,7 @@
 #from pyrsistent import v
 #from tkinter import font
 from itertools import count
+from numpy import save
 import streamlit as st
 import pandas as pd 
 #import numpy as np
@@ -66,27 +67,40 @@ def create_table(dict):
 
 
 def send_data(dict):
-
+    
+    st.success("Data Saved")
     with open (file_name,'w') as f:
         json.dump (dict,f)
+    #clear_all_entries()
+    #TODO
+    # clear form, email the json file
+    # then cleal all entried 
   
 
-def save_data (dict):
+def save_data (main_dict, dict,counter_number):
     '''
     loads existing json
     appends new data (dict)
     saves it again 
     
     '''
+ 
+    st.session_state['primary_key'] = st.session_state['primary_key'] + 1
+    
+    main_dict[counter_number] ['formula']= dict
+
+    st.session_state['main_dict'] = main_dict
+
     
     with open (file_name,'r') as data_file:
         data = json.load (data_file)
-        data.update (dict)
+        data.update (main_dict)
 
     with open (file_name,'w') as data_file:
         json.dump ( data , data_file, indent = 4)
     # every time we save the data we clear the session state main dict    
-    st.session_state.pop ('main_dict', None)
+    #st.session_state.pop ('main_dict', None)
+    clear_form()
         
     
         
@@ -100,13 +114,25 @@ def clear_all_entries ():
 
 
     st.session_state.pop('primary_key', None)
-    st.session_state.pop ('main_dict', None)
-
+    #st.session_state.pop ('main_dict', None)
+    clear_form()
 
 
 def clear_form ():
     # a is a datetime.date class
     # 2022-02-21 format 
+    # check the placeholder method also 
+
+    '''
+    # delete ALL
+    for key in st.session_state.keys():
+        
+        del.st.session_state[key]
+    
+    #st.session_state
+  
+        
+    '''
 
     
     #! st expand vars
@@ -131,7 +157,11 @@ def clear_form ():
                         'rm_code':[],
                         'rm_conc':[] 
                         }  
+    
 
+
+
+    
   
 
 def clear_table (): 
@@ -150,9 +180,9 @@ def run_app_v5(main_dict, dict):
     # counter number for formula number and later on the key in the dict
     if "primary_key" not in st.session_state:
         st.session_state ['primary_key'] = 1  
-        print (st.session_state)
+        #print (st.session_state)
         
-    #st.session_state['primary_key'] = 1
+
     
     counter_number = st.session_state['primary_key']     
     #counter_number =1
@@ -200,9 +230,12 @@ def run_app_v5(main_dict, dict):
         'cust':cust,
         'end_product':end_product,
         'remarks':remarks,
+        'formula':{}
         }
         
-        
+    
+    # if 'main_dict' exist then wont go here, and normaly 
+    # when SAVE ENTRY we have to clear session state
     if 'main_dict' not in st.session_state : 
         st.session_state['main_dict'] = main_dict
 
@@ -267,20 +300,16 @@ def run_app_v5(main_dict, dict):
             clr_tbl = st.button ("Clear Table", on_click = clear_table)
         
         
-        #! CLEAR SCREEN BUTTON
+        #! CLEAR SCREEN BUTTON (clear the PAGE only )
         with col2:
             clr_scrn = st.button ("Clear Screen ", on_click = clear_form)
-            if clr_scrn:
-                st.session_state.pop ('main_dict', None)
+
     
-        #! SAVE ENTRY BUTTON    
+        #! SAVE ENTRY BUTTON  (save ONE ENTRY )  
         with col3:
-            var_list = ["b","c","d","e","f"]
-            save_entry =  st.button (label="Save Entry", on_click = clear_form)
-            st.session_state['primary_key'] = st.session_state['primary_key'] + 1
-            if save_entry:
-                main_dict = st.session_state['main_dict']
-                save_data(main_dict)
+            #var_list = ["b","c","d","e","f"]
+            save_entry =  st.button (label="Save Entry", on_click= save_data, args = (main_dict,dict,counter_number))
+
     
 
       
@@ -293,7 +322,7 @@ def run_app_v5(main_dict, dict):
             #! CLEAR ALL ENTRIES BUTTON
             with x_col1:
                 # clear all entries made in this session
-                reset_all = st.button ("Clear ALL Entries", on_click = clear_form)
+                reset_all = st.button ("Clear ALL Entries")
                 if reset_all:
                     clear_all_entries()
                     
@@ -306,6 +335,8 @@ def run_app_v5(main_dict, dict):
                     # email json and reset json to zero
                     send_data(main_dict)
                     st.success("Data Saved")
+                    
+                    
                     
 
 
@@ -680,19 +711,11 @@ def run_app_v3(main_dict, dict):
             
             with x_col1:
                 # clear all entries made in this session
-                reset_all = st.button ("Clear ALL Entries", on_click = clear_form)
-                if reset_all:
-                    clear_all_entries()
-                    
+                reset_all = st.button ("Clear ALL Entries", on_click = clear_all_entries)
+          
                     
                 
             with x_col2:            
-                end_program = st.button ("Save and Quit")
+                end_program = st.button ("Save and Quit", on_click= send_data,args = main_dict)
                 
-                if end_program:
-                    send_data(main_dict)
-                    st.success("Data Saved")
-                    
-
-
-
+       

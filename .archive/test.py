@@ -1,3 +1,4 @@
+from turtle import clear
 import streamlit as st
 import time
 
@@ -31,15 +32,20 @@ def run_click():
 
 def test_state():
     
+
+    
     counter = 0
     if 'counter' not in st.session_state:
         st.session_state['counter'] = 0
     else:
         st.session_state['counter'] += 1
+    st.session_state
         
     counter = st.session_state['counter']
+    #counter = 1
     
     st.write(counter)
+    st.session_state
     
     # after the line below no code is run as it goes to the run click routine 
     # then go back to main; so no point to assign to x 
@@ -115,20 +121,40 @@ def agrid():
     df = pd.read_csv('https://raw.githubusercontent.com/fivethirtyeight/data/master/airline-safety/airline-safety.csv')
     AgGrid(df)
             
-
             
+            
+
+def delete_form():
+    
+    def clear_form():
+
+
+        st.session_state ['text']=''
+        st.session_state ['number']=0     
+        st.session_state   
+            
+
+    st.text_input("enter text", key="text")
+    st.number_input("enter number", key="number")
+    st.session_state   
+    st.button("delete", key="delete",on_click = clear_form)
+        
     
 
 
 def main():
     st.title("Streamlit App")
     
+    
+    
     #multip_routine()
+    
+    delete_form ()
     
     #test_state()
     #cache()
     
-    agrid()
+    #agrid()
     
 
 
