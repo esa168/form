@@ -1,46 +1,50 @@
 {
     "1": {
-        "cmf_no": "123",
-        "prod_code": "123",
-        "sm": "123",
+        "cmf_no": "",
+        "prod_code": "",
+        "sm": "",
         "dosage": 0.4,
         "resin": "HDPE",
         "prod_kind": "DC",
         "color": "#000000",
-        "cust": "123",
-        "end_product": "123",
-        "remarks": "123",
+        "cust": "",
+        "end_product": "",
+        "remarks": "",
         "formula": {
-            "rm_code": [
-                "123",
-                "123"
-            ],
-            "rm_conc": [
-                0.001,
-                0.001
-            ]
+            "rm_code": [],
+            "rm_conc": []
         }
     },
     "2": {
-        "cmf_no": "222",
-        "prod_code": "222",
-        "sm": "222",
+        "cmf_no": "",
+        "prod_code": "",
+        "sm": "",
         "dosage": 0.4,
         "resin": "HDPE",
         "prod_kind": "DC",
         "color": "#000000",
-        "cust": "222",
-        "end_product": "222",
-        "remarks": "222",
+        "cust": "",
+        "end_product": "",
+        "remarks": "",
         "formula": {
-            "rm_code": [
-                "222",
-                "222"
-            ],
-            "rm_conc": [
-                0.001,
-                0.001
-            ]
+            "rm_code": [],
+            "rm_conc": []
+        }
+    },
+    "3": {
+        "cmf_no": "",
+        "prod_code": "",
+        "sm": "",
+        "dosage": 0.4,
+        "resin": "HDPE",
+        "prod_kind": "DC",
+        "color": "#000000",
+        "cust": "",
+        "end_product": "",
+        "remarks": "",
+        "formula": {
+            "rm_code": [],
+            "rm_conc": []
         }
     }
 }
