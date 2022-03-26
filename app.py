@@ -149,9 +149,13 @@ def run_app_v5(main_dict, dict):
 
     # counter number for formula number and later on the key in the dict
     if "primary_key" not in st.session_state:
-        st.session_state['primary_key'] = 1  
+        st.session_state ['primary_key'] = 1  
+        print (st.session_state)
+        
+    #st.session_state['primary_key'] = 1
+    
     counter_number = st.session_state['primary_key']     
-
+    #counter_number =1
     
     st.markdown("### FORMULA ENTRY NO  :  "+ str(counter_number))
     
