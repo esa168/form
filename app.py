@@ -322,6 +322,11 @@ def run_app(main_dict, dict):
             
 def main ():
     
+    st.markdown(""" <style> #MainMenu {visibility: hidden;} 
+                footer {visibility: hidden;}</style> """, 
+                unsafe_allow_html=True)
+
+    
     
     dict = {
     'rm_code':[],
