@@ -204,9 +204,12 @@ def main ():
     st.write ('1) Must be a csv file')
     st.write ('2) Must have exactly 2 columns w/c signifies the primary keys ')
     st.write ('3) Values much have no white space and no null values ')
-    st.write ('4) Must have the same number of rows in both columns')
-    st.write ('5) Format of row values in each column must be the same format  ')
-    st.write ('6) Impt to note that W-2 and w2 and w-2 are NOT THE SAME ')
+    st.write ('4) Each Column must have the same number of rows')
+    st.write ('5) Format of row values in each column must be of the same format  ')
+    st.write ('6) Impt to note that the ff are NOT the same ')
+    st.write (      'a) W-2 , w2 , w-2  = must be the same asccii value')
+    st.write (      'a) 12 3 , 123 , 1 23  ')
+    st.write (      'a) 123 , 123.00  = must either both be an integer or both be a float ')
     st.write ()
  
     
