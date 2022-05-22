@@ -207,9 +207,9 @@ def main ():
     st.write ('4) Each Column must have the same number of rows')
     st.write ('5) Format of row values in each column must be of the same format  ')
     st.write ('6) Impt to note that the ff are NOT the same ')
-    st.write (      'a) W-2 , w2 , w-2  = must be the same asccii value')
-    st.write (      'a) 12 3 , 123 , 1 23  ')
-    st.write (      'a) 123 , 123.00  = must either both be an integer or both be a float ')
+    st.write ( '    a) W-2 , w2 , w-2  = must be the same asccii value')
+    st.write ( '    b) 12 3 , 123 , 1 23  ')
+    st.write ( '    c) 123 , 123.00  = must either both be an integer or both be a float ')
     st.write ()
  
     
