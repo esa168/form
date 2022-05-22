@@ -107,8 +107,8 @@ def chk_primary_keys (df, list_of_keys):
         #for keys in list_of_keys:
         #    st.write (keys)
         #st.write  (list_of_keys)
-        st.header  ('The duplicate details are :')
-        st.write ('(format of output below : primary key 1 : primary key 2)')
+        st.header  ('The details of the duplicates are :')
+        st.write ('(Format of output below is  primary key 1 : primary key 2)')
         #st.write (dup_dict)
         # {2: [15], 6599: [15], 6603: [15]}
         
@@ -204,9 +204,10 @@ def main ():
     st.write ('1) Must be a csv file')
     st.write ('2) Must have exactly 2 columns w/c signifies the primary keys ')
     st.write ('3) Values much have no white space and no null values ')
-    st.write ('4) Must have the same number of rows in each file')
-    st.write ('5) Format of values in each row of a column must be the same format  ')
+    st.write ('4) Must have the same number of rows in both columns')
+    st.write ('5) Format of row values in each column must be the same format  ')
     st.write ('6) Impt to note that W-2 and w2 and w-2 are NOT THE SAME ')
+    st.write ()
  
     
     
