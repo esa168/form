@@ -153,8 +153,20 @@ def process(uploaded_files):
         st.write ('Not a csv file')
         
      
+    
+def process_1(df):
+    
+    # check if uploaded file is a csv file
+    #input_csv = is_csv (uploaded_files)
+    
+  
+    list_of_keys  = ['key_1','key_2']
+    dict = chk_primary_keys (df, list_of_keys)
+        
+
+
             
-def main ():
+def main_1 ():
  
     st.markdown(""" <style> #MainMenu {visibility: hidden;} 
                 footer {visibility: hidden;}</style> """, 
@@ -167,13 +179,39 @@ def main ():
         #qty = st.text_input ('Enter Qty in kgs' )
         
         
-        uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=False)
+        uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=False, type='csv')
+        
+        
+        '''
+        spectra = st.file_uploader("upload file", type={"csv", "txt"})
+        if spectra is not None:
+            spectra_df = pd.read_csv(spectra)
+        st.write(spectra_df)
+        '''
 
         
         st.button ('Press Enter', key='enter',on_click= process , args = [uploaded_files])
 
     
+            
+def main ():
+ 
+    st.markdown(""" <style> #MainMenu {visibility: hidden;} 
+                footer {visibility: hidden;}</style> """, 
+                unsafe_allow_html=True)
+    
+    
+    uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=False, type={'csv'} )
+    
+    if uploaded_files is not None:
+        df = pd.read_csv (uploaded_files)
+        process_1 (df)
+    
 
+    
+    #st.button ('Press Enter', key='enter',on_click= process , args = [uploaded_files])
+
+    
     
     
 main ()
