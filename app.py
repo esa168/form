@@ -212,7 +212,7 @@ def main ():
     st.write ('5) Format of row values in each column must be of the same format  ')
     st.write ('6) Impt to note that the ff are NOT the same ')
     
-    col1, col2, col3 = st.columns()
+    col1, col2 = st.columns()
     with col1 :
         pass
     with col2:
