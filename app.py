@@ -216,7 +216,7 @@ def main ():
     lst = ['a', 'b', 'c']
 
     for i in lst:
-        st.markdown("- " + I)
+        st.markdown("- " + i)
     
 
     
