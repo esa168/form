@@ -212,12 +212,13 @@ def main ():
     st.write ('5) Format of row values in each column must be of the same format  ')
     st.write ('6) Impt to note that the ff are NOT the same : ')
     
+    '''
+        'a) W-2 , w2 , w-2  = must be the same asccii value')
+        'b) 12  3 , 123 , 1  23  ')
+        'c) 123 , 123.00  = must either both be an integer or both be a float ')
+    '''
     
-    lst = ['a', 'b', 'c']
 
-    for i in lst:
-        st.markdown("- " + i)
-    
 
     
     col1, col2,col3,col4 = st.columns(4)
