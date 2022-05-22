@@ -199,8 +199,8 @@ def main ():
                 unsafe_allow_html=True)
     
     
-    st.header ('File Requirements')
-    st.subheader ('PLS READ BEFORE USING ')
+    st.header ('FILE REQUIREMENTS')
+    st.subheader ('Pls read carefully before using this app')
     st.write ('1) Must be a csv file')
     st.write ('2) Must have exactly 2 columns w/c signifies the primary keys ')
     st.write ('3) Values much have no white space and no null values ')
