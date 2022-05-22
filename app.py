@@ -200,12 +200,13 @@ def main ():
     
     
     st.header ('File Requirements')
-    st.write ('1) must be a csv file')
-    st.write ('2) must have exactly 2 columns w/c signifies the primary keys ')
-    st.write ('3) values much have no white space and no null values ')
-    st.write ('4) must have the same number of rows in each file')
-    st.write ('5) format of values in each row of a column must be the same format  ')
-    st.write ('6) impt to note that W-2 and w2 and w-2 are NOT THE SAME ')
+    st.subheader ('PLS READ BEFORE USING ')
+    st.write ('1) Must be a csv file')
+    st.write ('2) Must have exactly 2 columns w/c signifies the primary keys ')
+    st.write ('3) Values much have no white space and no null values ')
+    st.write ('4) Must have the same number of rows in each file')
+    st.write ('5) Format of values in each row of a column must be the same format  ')
+    st.write ('6) Impt to note that W-2 and w2 and w-2 are NOT THE SAME ')
  
     
     
