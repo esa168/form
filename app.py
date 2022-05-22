@@ -159,7 +159,9 @@ def process_1(df, list_of_keys):
     #input_csv = is_csv (uploaded_files)
     
     #list_of_keys  = ['key_1','key_2']
-    dict = chk_primary_keys (df, list_of_keys)
+    with st.spinner('Wait for it...'):
+        
+        chk_primary_keys (df, list_of_keys)
         
 
 
@@ -194,7 +196,7 @@ def main_1 ():
             
 def main ():
     
-    backgroundColor = '#273346'
+
  
     st.markdown(""" <style> #MainMenu {visibility: hidden;} 
                 footer {visibility: hidden;}</style> """, 
@@ -209,10 +211,15 @@ def main ():
     st.write ('4) Each Column must have the same number of rows')
     st.write ('5) Format of row values in each column must be of the same format  ')
     st.write ('6) Impt to note that the ff are NOT the same ')
-    st.write ( '    a) W-2 , w2 , w-2  = must be the same asccii value')
-    st.write ( '    b) 12  3 , 123 , 1  23  ')
-    st.write ( '    c) 123 , 123.00  = must either both be an integer or both be a float ')
-    st.write ()
+    
+    col1, col2, col3 = st.columns()
+    with col1 :
+        pass
+    with col2:
+        st.write ( 'a) W-2 , w2 , w-2  = must be the same asccii value')
+        st.write ( 'b) 12  3 , 123 , 1  23  ')
+        st.write ( 'c) 123 , 123.00  = must either both be an integer or both be a float ')
+    st.empty ()
  
     
     
