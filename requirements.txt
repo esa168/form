@@ -1,5 +1,5 @@
 
-streamlit>=1.8.1
+streamlit==1.8.1
 pandas
 streamlit-aggrid==0.2.3.post2
 
