@@ -1,5 +1,4 @@
 
 streamlit==1.8.1
 pandas
-streamlit-aggrid==0.2.3.post2
-
+click==8
