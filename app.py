@@ -212,7 +212,7 @@ def main ():
     st.write ('5) Format of row values in each column must be of the same format  ')
     st.write ('6) Impt to note that the ff are NOT the same ')
     
-    col1, col2 = st.columns(2)
+    col1, col2,col3 = st.columns(3)
     
     with col1 :
         pass
@@ -220,6 +220,8 @@ def main ():
         st.write ( 'a) W-2 , w2 , w-2  = must be the same asccii value')
         st.write ( 'b) 12  3 , 123 , 1  23  ')
         st.write ( 'c) 123 , 123.00  = must either both be an integer or both be a float ')
+    with col3:
+        pass
         
     st.empty ()
  
