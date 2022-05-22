@@ -1,5 +1,4 @@
 import streamlit as st
-
 import pandas as pd
 
 
@@ -154,13 +153,12 @@ def process(uploaded_files):
         
      
     
-def process_1(df):
+def process_1(df, list_of_keys):
     
     # check if uploaded file is a csv file
     #input_csv = is_csv (uploaded_files)
     
-  
-    list_of_keys  = ['key_1','key_2']
+    #list_of_keys  = ['key_1','key_2']
     dict = chk_primary_keys (df, list_of_keys)
         
 
@@ -205,7 +203,14 @@ def main ():
     
     if uploaded_files is not None:
         df = pd.read_csv (uploaded_files)
-        process_1 (df)
+        
+        # get col names
+        old_col_names = df.columns.values.tolist()
+        if len (old_col_names)!=2 :
+            # col  should be 2 columns only
+            return
+        else:
+            process_1 (df, old_col_names)
     
 
     
