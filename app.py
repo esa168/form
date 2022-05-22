@@ -290,7 +290,7 @@ def run_app(main_dict, dict):
     
         #! SAVE ENTRY BUTTON  (save ONE ENTRY )  
         with col3:
-            st.button (label="Save Entry", on_click= save_one_entry, args = (main_dict,dict,counter_number))
+            st.button (label="Save Entry", on_click= save_one_entry, args = (main_dict , dict , counter_number))
 
     
 
