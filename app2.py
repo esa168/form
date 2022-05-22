@@ -47,6 +47,7 @@ def check_password():
         # Password correct.
         return True
 
+
 def create_table(dict):
     # headername = col name
     # field where data is coming from 
