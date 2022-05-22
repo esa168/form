@@ -210,7 +210,15 @@ def main ():
     st.write ('3) Values much have no white space and no null values ')
     st.write ('4) Each Column must have the same number of rows')
     st.write ('5) Format of row values in each column must be of the same format  ')
-    st.write ('6) Impt to note that the ff are NOT the same ')
+    st.write ('6) Impt to note that the ff are NOT the same : ')
+    
+    
+    lst = ['a', 'b', 'c']
+
+    for i in lst:
+        st.markdown("- " + I)
+    
+
     
     col1, col2,col3,col4 = st.columns(4)
     
