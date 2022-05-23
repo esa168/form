@@ -194,11 +194,11 @@ def main ():
     * (2)  Must have exactly 2 columns w/c signifies the primary keys 
     * (3)  Values much have no white space and no null values 
     * (4)  Both Columns must have the same number of rows
-    * (5)  Format of row values in each column must be of the same format (ie all integer or all string or all floats)
+    * (5)  Format of row values in each column must be of the same format (ie all integers or all strings or all floats)
     * (6)  Impt to note that the ff are NOT the same : 
-        *   W-2 , w2 , w-2  = as they have different asccii value
-        *   12  3 , 123 , 1  23  
-        *   123 , 123.00  =  must either both be an integer or both be a float
+        *   W-2 , w2, W2 , w-2  = all 4 are not the same as they have different ascii value
+        *   12  3 , 123 , 1  23 = white spaces in different places (assuming they are strings)
+        *   123 , 123.00  =  cannot be both an integer and a float. Must be either all integer or all floats
     '''
     
     
