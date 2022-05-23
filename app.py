@@ -210,7 +210,7 @@ def main ():
         # get col names
         old_col_names = df.columns.values.tolist()
         if len (old_col_names)!=2 :
-            # col  should be 2 columns only
+            st.warning ('Please upload a csv file that meets the conditions listed')
             return
         else:
             process (df, old_col_names)
