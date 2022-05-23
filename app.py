@@ -193,8 +193,8 @@ def main ():
     * (1)  Must be a csv file
     * (2)  Must have exactly 2 columns w/c signifies the primary keys 
     * (3)  Values much have no white space and no null values 
-    * (4)  Each Column must have the same number of rows
-    * (5)  Format of row values in each column must be of the same format 
+    * (4)  Both Columns must have the same number of rows
+    * (5)  Format of row values in each column must be of the same format (ie all integer or all string or all floats)
     * (6)  Impt to note that the ff are NOT the same : 
         *   W-2 , w2 , w-2  = as they have different asccii value
         *   12  3 , 123 , 1  23  
@@ -202,7 +202,7 @@ def main ():
     '''
     
     
-    uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=False, type={'csv'} )
+    uploaded_files = st.file_uploader("CSV file ONLY ", accept_multiple_files=False, type={'csv'} )
     
     if uploaded_files is not None:
         df = pd.read_csv (uploaded_files)
