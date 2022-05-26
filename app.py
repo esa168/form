@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
+import streamlit_authenticator as stauth  
 
 
-
+#! NO NEED 
 def is_csv(infile):
     
     import csv
@@ -24,7 +25,7 @@ def is_csv(infile):
     
 
 
-
+#! DEPRACATED
 def check_password():
     #https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso
     # not commit secrets to git hub
@@ -57,8 +58,6 @@ def check_password():
 
 
 
-
-
 def no_duplicate_keys (df,col_name):
     '''
      check for duplicates in a column of a dataframe and returns a list containing the values of duplicates
@@ -80,8 +79,6 @@ def no_duplicate_keys (df,col_name):
     list_of_duplicate_key = [k for k, v in d.items() if v > 1]
 
     return list_of_duplicate_key
-
-
 
 
 
@@ -156,10 +153,7 @@ def chk_primary_keys (df, list_of_keys):
     return dup_dict
 
 
-
-
-    
-    
+     
 def process(df, list_of_keys):
     
     # check if uploaded file is a csv file
@@ -171,12 +165,10 @@ def process(df, list_of_keys):
         chk_primary_keys (df, list_of_keys)
         
 
-
             
-
-            
-def main ():
+def run_program ():
     
+    #st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
  
     st.markdown(""" <style> #MainMenu {visibility: hidden;} 
@@ -214,10 +206,57 @@ def main ():
             return
         else:
             process (df, old_col_names)
+  
+  
+def check_password_1():
     
+    # our final pwde procedure as this will use hash but error
+    # KeyError: 'st.session_state has no key "authentication_status". 
+    # Did you forget to initialize it? More info: https://docs.streamlit.io/library/advanced-features/session-state#initialization'
     
+    import pickle
+    from pathlib import Path
+
+    # --- USER AUTHENTICATION ---
+    names = ["jarick", "elton"]
+    usernames = ["jarick", "esa"]
+    passwords = ["pevear8?1", "341438"]
+
+
+    # load hashed passwords
+    file_path = Path(__file__).parent / "hashed_pw.pkl"
+    with file_path.open("rb") as file:
+        hashed_passwords = pickle.load(file)
+
+    authenticator = stauth.Authenticate(names, usernames, hashed_passwords,"sales_dashboard", "abcdef", cookie_expiry_days = 1)
+
+    name, authentication_status, username = authenticator.login("Login", "sidebar")
+    authenticator.logout("Logout", "sidebar")
+
+    if authentication_status == False:
+        st.error("Username/password is incorrect")
+        return False
+
+    if authentication_status == None:
+        st.warning("Please enter your username and password")
+        return False
+
+    if authentication_status:
+        return True
     
-if check_password():
+
+    
+def main():
+    st.markdown(""" <style> #MainMenu {visibility: hidden;} 
+                    footer {visibility: hidden;}</style> """, 
+                    unsafe_allow_html=True)
+        
+        
+    if check_password():
+        run_program()
+
+
+if __name__ == '__main__':
     main()
 
 
