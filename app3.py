@@ -1,60 +1,7 @@
+from pyrsistent import v
 import streamlit as st
 import pandas as pd
 import streamlit_authenticator as stauth  
-
-
-#! NO NEED 
-def is_csv(infile):
-    
-    import csv
-    
-    #https://stackoverflow.com/questions/2984888/check-if-file-has-a-csv-format-with-python    
-    try:
-        with open(infile, newline='') as csvfile:
-            start = csvfile.read(4096)
-
-            # isprintable does not allow newlines, printable does not allow umlauts...
-            if not all ( [c in start.printable or c.isprintable() for c in start ] ):
-                return False
-            dialect = csv.Sniffer().sniff(start)
-            return True
-        
-    except csv.Error:
-        # Could not get a csv dialect -> probably not a csv.
-        return False
-    
-
-
-#! DEPRACATED
-def check_password():
-    #https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso
-    # not commit secrets to git hub
-    """Returns `True` if the user had the correct password."""
-
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        if st.session_state["password"] == st.secrets["password"]:
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  # don't store password
-        else:
-            st.session_state["password_correct"] = False
-
-    if "password_correct" not in st.session_state:
-        # First run, show input for password.
-        st.text_input(
-            "Password", type="password", on_change=password_entered, key="password"
-        )
-        return False
-    elif not st.session_state["password_correct"]:
-        # Password not correct, show input + error.
-        st.text_input(
-            "Password", type="password", on_change=password_entered, key="password"
-        )
-        st.error("😕 Password incorrect")
-        return False
-    else:
-        # Password correct.
-        return True
 
 
 
@@ -79,8 +26,6 @@ def no_duplicate_keys (df,col_name):
     list_of_duplicate_key = [k for k, v in d.items() if v > 1]
 
     return list_of_duplicate_key
-
-
 
 def chk_primary_keys (df, list_of_keys):
     # good for a dataframe that has 1 or 2 primary keys only. 
@@ -151,9 +96,7 @@ def chk_primary_keys (df, list_of_keys):
 
             
     return dup_dict
-
-
-     
+ 
 def process(df, list_of_keys):
     
     # check if uploaded file is a csv file
@@ -163,9 +106,7 @@ def process(df, list_of_keys):
     with st.spinner('Procesing....'):
         
         chk_primary_keys (df, list_of_keys)
-        
-
-            
+                 
 def run_program ():
     
     #st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
@@ -207,56 +148,114 @@ def run_program ():
         else:
             process (df, old_col_names)
   
-  
-def check_password_1():
+#####################################
+
+
+def create_password (): 
+    import random
+    import string
+
+    char = random.randint (10, 15)
+    s = string.ascii_letters + string.digits # +string.punctuation
+
+    # string punctuations are 
+    # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+
+    password = ''.join(random.choice(s) for i in range(char))
+
+    #print (password)
     
-    # our final pwde procedure as this will use hash but error
-    # KeyError: 'st.session_state has no key "authentication_status". 
-    # Did you forget to initialize it? More info: https://docs.streamlit.io/library/advanced-features/session-state#initialization'
-    
-    import pickle
-    from pathlib import Path
+    return password
 
-    # --- USER AUTHENTICATION ---
-    names = ["jarick", "elton"]
-    usernames = ["jarick", "esa"]
-    passwords = ["pevear8?1", "341438"]
-
-
-    # load hashed passwords
-    file_path = Path(__file__).parent / "hashed_pw.pkl"
-    with file_path.open("rb") as file:
-        hashed_passwords = pickle.load(file)
-
-    authenticator = stauth.Authenticate(names, usernames, hashed_passwords,"sales_dashboard", "abcdef", cookie_expiry_days = 1)
-
-    name, authentication_status, username = authenticator.login("Login", "sidebar")
-    authenticator.logout("Logout", "sidebar")
-
-    if authentication_status == False:
-        st.error("Username/password is incorrect")
-        return False
-
-    if authentication_status == None:
-        st.warning("Please enter your username and password")
-        return False
-
-    if authentication_status:
-        return True
-    
-def check_password_2():
-    pass
+def email_pwd(details_dict):
+    import smtplib
+    import ssl
+        
+    my_email = 'auto.email.ko@gmail.com'
+    password = 'M=hr4iAT.yoRnrDHz'
+    port_number_for_starttls = 587
+    port_number_for_SMTP_SSL =465
+    smtp_name = "smtp.gmail.com"
     
     
+    subject = 'one time password'
+    msg = "\n\nYour One Time Password is  : \n\n\n"+ details_dict['password']
+    msg_to_send = 'Subject : ' + subject + '\n\n' + msg
+    
+    to_email =  details_dict['email_to_send']
+    
+    
+    with smtplib.SMTP("smtp.gmail.com", port_number_for_starttls) as connection:
+        connection.starttls()
+        connection.login(user = my_email, password=password)
+        connection.sendmail(from_addr = my_email, to_addrs = to_email, msg = msg_to_send)
+        st.sidebar.write ('Email sent to : ' + to_email)
+
+    
+
+def check_password():
+    
+
+    valid_users = {'jarick': ['jarick@polycolor.biz', '123'],
+                   'elton': ['esapci@gmail.com', '456']
+                   } 
+    
+    list_of_users = list(valid_users.keys())
+    
+    with st.sidebar:
+        user = st.selectbox('Select User', list_of_users)
+      
+    
+
+    
+    with st.sidebar:
+        
+        #while 'password'not in st.session_state: 
+         
+            
+            #frst_pwd = input ("Enter your personal password : ")
+            frst_pwd = st.text_input ('Enter your personal password : ')
+            
+            if frst_pwd == valid_users[user][1]:
+                # first password is correct
+                if 'password' not in st.session_state :
+                    pwd = create_password()
+                    email_dict = {
+                        'password': pwd,
+                        'email_to_send': valid_users[user][0]
+                    }
+                    st.session_state['password'] = pwd
+
+
+                    email_pwd (email_dict)
+
+                    usr_pwd = st.text_input ("Enter emailed password: ")
+                    if usr_pwd == st.session_state['password']:
+                        del st.session_state["password"] 
+                        return True
+                    else :
+                        st.error ('Please enter correct password')
+
+
+
     
 def main():
     st.markdown(""" <style> #MainMenu {visibility: hidden;} 
                     footer {visibility: hidden;}</style> """, 
                     unsafe_allow_html=True)
+    
+  
+    
+    
+    if 'password_enter' not in st.session_state :    
+   
+        st.session_state['password_enter'] = check_password() 
         
         
-    if check_password():
+    if st.session_state['password_enter'] == True :
         run_program()
+
+        
 
 
 if __name__ == '__main__':
