@@ -255,7 +255,7 @@ def main():
                     unsafe_allow_html=True)
         
         
-    if check_password():
+    if check_password_1():
         run_program()
 
 
