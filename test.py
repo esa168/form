@@ -1,4 +1,4 @@
-from calendar import c
+
 import streamlit as st
 import random
 
