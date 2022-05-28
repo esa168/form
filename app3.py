@@ -191,50 +191,56 @@ def email_pwd(details_dict):
         connection.sendmail(from_addr = my_email, to_addrs = to_email, msg = msg_to_send)
         st.sidebar.write ('Email sent to : ' + to_email)
 
+
+#####################################
+
+def first_layer (valid_users):
+  
+    list_of_users = list(valid_users.keys())
     
+    with st.form ('my form'):
+        
+        user = st.selectbox('Select User', list_of_users)
+      
+        #while 'password'not in st.session_state: 
+            
+        #frst_pwd = input ("Enter your personal password : ")
+        frst_pwd = st.text_input ('Enter your personal password : ')
+        
+        submitted = st.form_submit_button("Submit")
+    
+    if submitted:
+        return user, frst_pwd
+    
+
 
 def check_password():
     
-
-    valid_users = {'jarick': ['jarick@polycolor.biz', '123'],
+    valid_users = {'jarick': ['elton@polycolor.biz', '123'],
                    'elton': ['esapci@gmail.com', '456']
                    } 
     
-    list_of_users = list(valid_users.keys())
-    
-    with st.sidebar:
-        user = st.selectbox('Select User', list_of_users)
-      
-    
-
-    
-    with st.sidebar:
+    user, frst_pwd = first_layer (valid_users)
         
-        #while 'password'not in st.session_state: 
-         
-            
-            #frst_pwd = input ("Enter your personal password : ")
-            frst_pwd = st.text_input ('Enter your personal password : ')
-            
-            if frst_pwd == valid_users[user][1]:
-                # first password is correct
-                if 'password' not in st.session_state :
-                    pwd = create_password()
-                    email_dict = {
-                        'password': pwd,
-                        'email_to_send': valid_users[user][0]
-                    }
-                    st.session_state['password'] = pwd
+    if frst_pwd == valid_users[user][1]:
+        # first password is correct
+        if 'password' not in st.session_state :
+            pwd = create_password()
+            email_dict = {
+                'password': pwd,
+                'email_to_send': valid_users[user][0]
+            }
+            st.session_state['password'] = pwd
 
+            st.write ('Your one time password is : ' + pwd)
+            #email_pwd (email_dict)
 
-                    email_pwd (email_dict)
-
-                    usr_pwd = st.text_input ("Enter emailed password: ")
-                    if usr_pwd == st.session_state['password']:
-                        del st.session_state["password"] 
-                        return True
-                    else :
-                        st.error ('Please enter correct password')
+            usr_pwd = st.text_input ("Enter emailed password: ")
+            if usr_pwd == st.session_state['password']:
+                del st.session_state["password"] 
+                return True
+            else :
+                st.error ('Please enter correct password')
 
 
 
@@ -248,11 +254,8 @@ def main():
     
     
     if 'password_enter' not in st.session_state :    
-   
         st.session_state['password_enter'] = check_password() 
-        
-        
-    if st.session_state['password_enter'] == True :
+    elif st.session_state['password_enter'] == True :
         run_program()
 
         
