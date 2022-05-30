@@ -1,7 +1,8 @@
 import pickle
 from pathlib import Path
-
 import streamlit_authenticator as stauth
+
+# generate hash password 
 
 names = ["jarick", "elton"]
 usernames = ["jarick", "esa"]
